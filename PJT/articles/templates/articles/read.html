@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5">
+    <h1 class="my-4">안녕하세요 {{ user }}님</h1>
+    {% for routine in routines %}
+    <div class="card m-5">
+        <div class="card-body">
+            <h3 class="card-title mb-3">할 일 : {{ routine.title }}</h3>
+            <h4 class="card-subtitle my-3">카테고리 : {{ routine.category }}</h4>
+            <h5 class="card-text">목표 : {{ routine.goal }}</h5>
+            <p class="card-text">알람 설정 : <a href="{% url 'articles:alarm' routine.pk %}">설정</a>{{ routine.is_alarm }}
+            </p>
+            <p class="card-text">삭제 여부 : <a href="{% url 'articles:delete' routine.pk %}">설정</a>{{ routine.is_deleted }}
+            </p>
+            <p class="card-text">생성일 : {{ routine.created_at }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

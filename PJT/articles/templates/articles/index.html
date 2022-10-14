@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container text-center py-5">
+    <img src="{% static 'images/background.jpg' %}">
+    <h1 class="my-4">안녕하세요 {{ user }}님</h1>
+    <a href="{% url 'articles:create' %}">go create</a>
+    <a href="{% url 'articles:read' %}">go read</a>
+</div>
+{% endblock %}

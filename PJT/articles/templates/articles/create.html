@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<div class="container py-5">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form routine_form %}
+        <div class="d-flex justify-content-end">
+            <input class="btn btn-primary" type="submit" value="글쓰기">
+        </div>
+    </form>
+
+</div>
+{% endblock %}
