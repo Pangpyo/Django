@@ -50,6 +50,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "multiselectfield",
     "articles",
     "accounts",
     "django_bootstrap5",

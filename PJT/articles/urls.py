@@ -10,4 +10,5 @@ urlpatterns = [
     path("read/", views.read, name="read"),
     path("alarm/<int:routine_pk>", views.alarm, name="alarm"),
     path("delete/<int:routine_pk>", views.delete, name="delete"),
+    path("update/<int:routine_pk>", views.update, name="update"),
 ]

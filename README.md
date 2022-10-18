@@ -193,3 +193,14 @@ Response = {
 
 * 모든 모델 구현
 * 유저 id와 외래키 연동
+
+### day 2
+
+#### Routine
+
+* 수정, 삭제, 알람 변경 등 구현
+* 자기가 쓴 글만 열람 할 수 있게 함
+
+#### Routine_result, Routine_dayForm
+
+* 모델 및 모델폼 구현

@@ -28,7 +28,7 @@ def create(request):
     context = {
         "routine_form": routine_form,
     }
-    return render(request, "articles/create.html", context=context)
+    return render(request, "articles/form.html", context=context)
 
 
 @login_required
@@ -52,3 +52,18 @@ def delete(request, routine_pk):
     routine.is_deleted = not routine.is_deleted
     routine.save()
     return redirect("articles:read")
+
+
+def update(request, routine_pk):
+    routine = Routines.objects.get(pk=routine_pk)
+    if request.method == "POST":
+        routine_form = RoutineForm(request.POST, request.FILES, instance=routine)
+        if routine_form.is_valid():
+            routine_form.save()
+            return redirect("articles:detail", routine.pk)
+    else:
+        routine_form = RoutineForm(instance=routine)
+    context = {
+        "routine_form": routine_form,
+    }
+    return render(request, "articles/form.html", context)

@@ -3,20 +3,37 @@
 {% block content %}
 
 <div class="container py-5">
-    <h1 class="my-4">안녕하세요 {{ user }}님</h1>
+    <div class="card m-5 p-3">
+        <h1 class="my-4">안녕하세요 {{ user }}님</h1>
+    </div>
     {% for routine in routines %}
+    {% if not routine.is_delete and routine.user == user %}
     <div class="card m-5">
         <div class="card-body">
-            <h3 class="card-title mb-3">할 일 : {{ routine.title }}</h3>
-            <h4 class="card-subtitle my-3">카테고리 : {{ routine.category }}</h4>
+            <h3 class="card-title mb-3">{{ routine.title }}</h3>
+            <hr>
+            <p class="card-subtitle my-3">카테고리 : {{ routine.category }}</p>
+            <hr>
             <h5 class="card-text">목표 : {{ routine.goal }}</h5>
-            <p class="card-text">알람 설정 : <a href="{% url 'articles:alarm' routine.pk %}">설정</a>{{ routine.is_alarm }}
+            <hr>
+            <p class="card-text">알람 설정 :
+                {% if routine.is_alarm %}
+                <a class="text-primary text-decoration-none" href="{% url 'articles:alarm' routine.pk %}">ON</a>
+                {% else %}
+                <a class="text-danger text-decoration-none" href="{% url 'articles:alarm' routine.pk %}">OFF</a>
+                {% endif %}
             </p>
-            <p class="card-text">삭제 여부 : <a href="{% url 'articles:delete' routine.pk %}">설정</a>{{ routine.is_deleted }}
-            </p>
-            <p class="card-text">생성일 : {{ routine.created_at }}</p>
+            {% if routine.created_at == routine.modified_at %}
+            작성일 : {{ routine.created_at }}
+            {% else %}
+            작성일 : {{ routine.modified_at }} (수정됨)
+            {% endif %}
+            <p class="card-text"></p>
+            <a class="btn btn-primary" href="{% url 'articles:update' routine.pk %}">수정하기</a>
+            <a class="btn btn-danger" href="{% url 'articles:delete' routine.pk %}">삭제하기</a>
         </div>
     </div>
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock %}
