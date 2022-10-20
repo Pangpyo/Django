@@ -4,8 +4,11 @@
 
 <div class="container text-center py-5">
     <img src="{% static 'images/background.jpg' %}">
+    {% if request.user.is_authenticated %}
     <h1 class="my-4">안녕하세요 {{ user }}님</h1>
-    <a href="{% url 'articles:create' %}">go create</a>
-    <a href="{% url 'articles:read' %}">go read</a>
+    <a class="btn btn-secondary" href="{% url 'articles:create' %}">루틴 만들기</a>
+    <a class="btn btn-secondary" href="{% url 'articles:read' user.pk %}">모든 루틴 확인하기</a>
+    <a class="btn btn-secondary" href="{% url 'articles:days' user.pk %}">오늘의 루틴</a>
+    {% endif %}
 </div>
 {% endblock %}

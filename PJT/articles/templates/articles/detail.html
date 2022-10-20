@@ -6,8 +6,6 @@
     <div class="card m-5 p-3">
         <h1 class="my-4">안녕하세요 {{ user }}님</h1>
     </div>
-    {% for routine in routines %}
-    {% if not routine.is_deleted %}
     <div class="card m-5">
         <div class="card-body">
             <h3 class="card-title mb-3">{{ routine.title }}</h3>
@@ -15,20 +13,16 @@
             <p class="card-subtitle my-3">카테고리 : {{ routine.category }}</p>
             <hr>
             <p class="card-subtitle my-3">요일 :
-                {% for routine_day in routine_days %}
-                {% if routine_day.routine_id == routine.pk %}
                 {{ routine_day.day }}
-                {% endif %}
-                {% endfor %}
             </p>
             <hr>
             <h5 class="card-text">목표 : {{ routine.goal }}</h5>
             <hr>
             <p class="card-text">알람 설정 :
                 {% if routine.is_alarm %}
-                ON
+                <a class="text-primary text-decoration-none" href="{% url 'articles:alarm' user.pk routine.pk %}">ON</a>
                 {% else %}
-                OFF
+                <a class="text-danger text-decoration-none" href="{% url 'articles:alarm' user.pk routine.pk %}">OFF</a>
                 {% endif %}
             </p>
             {% if routine.created_at == routine.modified_at %}
@@ -36,9 +30,15 @@
             {% else %}
             작성일 : {{ routine.modified_at }} (수정됨)
             {% endif %}
+            <p class="card-text">결과 :
+                <a href="{% url 'articles:result' user.pk routine.pk %}">
+                    {{ routine_result.result }}
+                </a>
+
+            </p>
+            <a class="btn btn-primary" href="{% url 'articles:update' routine.pk %}">수정하기</a>
+            <a class="btn btn-danger" href="{% url 'articles:delete' user.pk routine.pk %}">삭제하기</a>
         </div>
     </div>
-    {% endif %}
-    {% endfor %}
 </div>
 {% endblock %}

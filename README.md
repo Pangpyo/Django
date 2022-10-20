@@ -179,28 +179,76 @@ Response = {
 * 테스트 코드는 적절하게 구현되어 있는가? 
 * 요구사항에 대한 판단이 적절하게 이루어져 있는가?
 
-## 과제 진행 상황
+## 과제 완료
 
-### day 1
+### index.html(로그인 x)
 
-#### 유저 회원가입 (accounts.User)
+![image-20221021012508837](README.assets/image-20221021012508837.png)
 
-* 이메일 로그인 구현
-* 비밀번호 + 특수문자 구현
-* 회원정보 수정 구현
+* 기본 페이지이며, 네비게이션 바를 통해 회원가입과 로그인 가능
 
-#### Routine
+### signup.html
 
-* 모든 모델 구현
-* 유저 id와 외래키 연동
+![image-20221021012615252](README.assets/image-20221021012615252.png)
 
-### day 2
+* 이메일과 닉네임, 특수문자와 알파벳 숫자를 포함한 비밀번호로 계정 생성 가능
 
-#### Routine
+### login.html
 
-* 수정, 삭제, 알람 변경 등 구현
-* 자기가 쓴 글만 열람 할 수 있게 함
+![image-20221021012657294](README.assets/image-20221021012657294.png)
 
-#### Routine_result, Routine_dayForm
+* 로그인페이지를 통해 로그인 가능
 
-* 모델 및 모델폼 구현
+### index.html(로그인 o)
+
+![image-20221021012753553](README.assets/image-20221021012753553.png)
+
+* 로그인 후에는 네비게이션 바를 통해 내 정보 확인과 로그아웃이 가능하며, 루틴 만들기, 루틴 확인하기, 오늘의 루틴 페이지로 이동하는 버튼이 생김
+
+### profile.html
+
+![image-20221021012840972](README.assets/image-20221021012840972.png)
+
+* 내 정보를 확인 가능하며, 계정삭제 및 비밀번호 변경 가능
+
+### create
+
+![image-20221021013215970](README.assets/image-20221021013215970.png)
+
+* 루틴 만들기 버튼을 통해 글을 쓸 수 있으며, 제목, 카테고리, 목표 알람여부를 설정가능함
+* 이 때 아래의 요일 선택을 통해 result_day도 함께 생성. 다중 선택 가능함
+* 대응되는 result도 dafault=not인 상태로 생성됨
+* ![image-20221021013233468](README.assets/image-20221021013233468.png)
+  * 글 생성 후에는 메시지가 alert됨
+
+### read.html
+
+![image-20221021013358832](README.assets/image-20221021013358832.png)
+
+* 해당 아이디로 생성한 모든 루틴 확인 가능
+
+### days.html
+
+![image-20221021013428501](README.assets/image-20221021013428501.png)
+
+* 오늘 날짜에 해당하는 루틴만을 보여줌. 제목을 클릭해서 detail페이지로 이동 가능
+
+### detail.html
+
+![image-20221021013528286](README.assets/image-20221021013528286.png)
+
+* 해당 루틴의 상세정보를 확인 가능
+* 알람설정을 클릭해 on off 변경 가능
+* 수정을 해서 작성일이 변경되면 (수정됨)이 붙음
+* 삭제하기를 통해 is_deleted를 True로 변경 가능
+  * <img src="README.assets/image-20221021013712041.png" alt="image-20221021013712041" style="zoom:33%;" />
+  * 삭제할 시 days페이지로 이동하며, is_deleted가 True인 루틴들은 열람 불가능해짐
+* 결과를 클릭해서 결과 수정 페이지로 이동
+  * ![image-20221021013823248](README.assets/image-20221021013823248.png)
+  * routine과 rotine_day 수정 가능
+
+### result.html
+
+![image-20221021013939322](README.assets/image-20221021013939322.png)
+
+* 결과 수정 가능

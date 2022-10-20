@@ -7,8 +7,7 @@
 <div class="container py-5">
     <form action="" method="POST">
         {% csrf_token %}
-        {% bootstrap_form routine_form %}
-        {% bootstrap_form routine_day_form %}
+        {% bootstrap_form routine_resultform %}
         <div class="d-flex justify-content-end">
             <input class="btn btn-primary" type="submit" value="제출">
         </div>

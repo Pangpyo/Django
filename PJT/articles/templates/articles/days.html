@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5">
+    <h1 class="my-4">안녕하세요 {{ user }}님</h1>
+
+    <div class="card m-5">
+        <div class="card-header">
+            <h2 class="card-title">{{ today }} 루틴</h2>
+        </div>
+        <div class="card-body">
+            <h4 class="card-subtitle mb-4">기상 루틴</h4>
+            {% for routine_day in routine_days %}
+            {% if routine_day.routine.category == 'miracle' %}
+            {% if not routine_day.routine.is_deleted %}
+            <hr>
+            <h5 class="card-text">제목 :
+                <a href="{% url 'articles:detail' user.pk routine_day.routine.pk %}">
+                    {{ routine_day.routine.title }}
+                </a>
+            </h5>
+            <p class="card-text">내용 : {{ routine_day.routine.goal }}</p>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+        <hr>
+        <div class="card-body">
+            <h4 class="card-subtitle mb-4">숙제 루틴</h4>
+            {% for routine_day in routine_days %}
+            {% if routine_day.routine.category == 'homework' %}
+            {% if not routine_day.routine.is_deleted %}
+            <hr>
+            <h5 class="card-text">제목 :
+                <a href="{% url 'articles:detail' user.pk routine_day.routine.pk %}">{{ routine_day.routine.title }}</a>
+            </h5>
+            <p class="card-text">내용 : {{ routine_day.routine.goal }}</p>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

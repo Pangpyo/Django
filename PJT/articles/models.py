@@ -13,8 +13,8 @@ class Routines(models.Model):
     category = models.CharField(
         max_length=9,
         choices=(
-            (MIRACLE, "miracle"),
-            (HOMEWORK, "homework"),
+            (MIRACLE, "기상"),
+            (HOMEWORK, "숙제"),
         ),
         default=MIRACLE,
     )
@@ -26,7 +26,7 @@ class Routines(models.Model):
 
 
 class Routine_result(models.Model):
-    routine_id = models.ForeignKey(Routines, on_delete=models.CASCADE)
+    routine = models.ForeignKey(Routines, on_delete=models.CASCADE)
     NOT = "not"
     TRY = "try"
     DONE = "done"
@@ -41,27 +41,27 @@ class Routine_result(models.Model):
 
 
 class Routine_day(models.Model):
-    MON = "mon"
-    TUE = "tue"
-    WED = "wed"
-    THU = "thu"
-    FRI = "fri"
-    SAT = "sat"
-    SUN = "sun"
+    MON = "Monday"
+    TUE = "Tuesday"
+    WED = "Wednesday"
+    THU = "Thursday"
+    FRI = "Friday"
+    SAT = "Saturday"
+    SUN = "Sunday"
     DAY_WEEK = (
-        (MON, "월요일"),
-        (TUE, "화요일"),
-        (WED, "수요일"),
-        (THU, "목요일"),
-        (FRI, "금요일"),
-        (SAT, "토요일"),
-        (SUN, "일요일"),
+        (MON, "Monday"),
+        (TUE, "Tuesday"),
+        (WED, "Wednesday"),
+        (THU, "Thursday"),
+        (FRI, "Friday"),
+        (SAT, "Saturday"),
+        (SUN, "Sunday"),
     )
     day = MultiSelectField(
         choices=DAY_WEEK,
         min_choices=1,
         max_choices=7,
     )
-    routine_id = models.ForeignKey(Routines, on_delete=models.CASCADE)
+    routine = models.ForeignKey(Routines, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
